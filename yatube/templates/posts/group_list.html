@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }} {{ group }}
+{% endblock %}
+{% block main %}
+{% for post in posts %}
+    <div class="container py-5">
+    <p>
+        <h1>
+            {% if forloop.first %} Посты группы: {{ post.group }}{% endif %}
+        </h1>
+    </p>
+    <article>
+      <ul>
+        <li>
+          Автор: {{ post.author.get_full_name }}
+        </li>
+        <li>
+          Дата публикации: {{ post.pub_date|date:"d E Y" }}
+        </li>
+      </ul>
+      <p>
+          {{ post.text }}
+      </p>
+     </article>
+     {% if not forloop.last %}<hr>{% endif %}
+    <!-- под последним постом нет линии -->
+  </div>
+{% endfor %}
+{% endblock %}

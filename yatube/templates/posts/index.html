@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+{% block main %}
+{% for post in posts %}
+    <div class="container py-5">
+    <p>
+        <h1>
+            {% if forloop.first %} Последние обновления сообществ {% endif %}
+        </h1>
+      <ul>
+        <li>
+          Автор: {{ post.author.get_full_name }}
+        </li>
+        <li>
+          Дата публикации: {{ post.pub_date|date:"d E Y" }}
+        </li>
+      </ul>
+      <p>{{ post.text }}</p>
+      <a href="{% url 'posts:group_list' post.group %}">
+          все записи группы {{ post.group }}
+      </a>
+  {% if not forloop.last %}<hr>{% endif %}
+    </div>
+{% endfor %}
+{% endblock %}
