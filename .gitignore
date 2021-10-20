@@ -147,3 +147,5 @@ dmypy.json
 
 # Pycharm
 .idea/
+
+__pycache__/

@@ -5,9 +5,6 @@ from .models import Post, Group
 def index(request):
     template = 'posts/index.html'
     title = 'Последние обновления на сайте'
-    # Одна строка вместо тысячи слов на SQL:
-    # в переменную posts будет сохранена выборка из 10 объектов модели Post,
-    # отсортированных по полю pub_date по убыванию (от больших значений к меньшим)
     posts = Post.objects.order_by('-pub_date')[:10]
     # В словаре context отправляем информацию в шаблон
     context = {
@@ -15,7 +12,6 @@ def index(request):
         'posts': posts,
     }
     return render(request, template, context)
-
 
 
 def group_posts(request, slug):
