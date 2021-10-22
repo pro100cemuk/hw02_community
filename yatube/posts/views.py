@@ -17,9 +17,7 @@ def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()[:10]
     template = 'posts/group_list.html'
-    title = Group.title
     context = {
-        'title': title,
         'group': group,
         'posts': posts,
     }
