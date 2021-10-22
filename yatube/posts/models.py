@@ -1,12 +1,12 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 User = get_user_model()
 
 
 class Group(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=40,
+    slug = models.SlugField(max_length=200,
                             unique=True,
                             db_index=True,
                             verbose_name="URL")
@@ -31,3 +31,6 @@ class Post(models.Model):
         blank=True,
         null=True,
     )
+
+    class Meta:
+        ordering = ['-pub_date']
